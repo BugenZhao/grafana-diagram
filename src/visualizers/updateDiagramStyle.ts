@@ -12,7 +12,12 @@ type MetricIndicator = DisplayValue & {
 };
 
 const selectElementById = (container: HTMLElement, id: string): Selection<any, any, any, any> => {
-  return select(container.querySelector('#' + id));
+  return select(container)
+    .selectAll('g')
+    .filter(function () {
+      const regex = new RegExp(`flowchart-${id}-[0-9]+`);
+      return regex.test(select(this).attr('id'));
+    });
 };
 
 const selectElementByEdgeLabel = (container: HTMLElement, id: string): Selection<any, any, any, any> => {
@@ -183,7 +188,7 @@ const styleSequenceDiagramEdgeLabel = (
       spanElement.style('color', indicator.color);
     }
   }
-}
+};
 
 const injectCustomStyle = (container: HTMLElement, diagramStyle: string, diagramId: string) => {
   const diagramDiv = select(container);
