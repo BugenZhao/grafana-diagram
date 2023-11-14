@@ -72,7 +72,7 @@ export const defaultMermaidThemeVariables: MermaidThemeVariables = {
 
 export const defaults: DiagramOptions = {
   pluginVersion: '',
-  nodeSize: { minWidth: 30, minHeight: 40 },
+  nodeSize: { minWidth: 30, minHeight: 30 },
   composites: [],
   metricCharacterReplacements: [],
   style: '',
