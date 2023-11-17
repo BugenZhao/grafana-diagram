@@ -17,6 +17,7 @@ export interface DiagramPanelControllerProps {
   width: number;
   height: number;
   options: DiagramOptions;
+  definitionFromData: string | undefined;
   fieldConfig: FieldConfigSource;
   data: DiagramSeriesModel[];
   timeZone: TimeZone;
@@ -131,7 +132,10 @@ export class DiagramPanelController extends React.Component<DiagramPanelControll
   }
 
   loadDiagramDefinition() {
-    if (this.props.options.contentUrl) {
+    if (this.props.options.useDefinitionFromData && this.props.definitionFromData) {
+      console.log('using definition from data');
+      return Promise.resolve(this.props.definitionFromData);
+    } else if (this.props.options.contentUrl) {
       const url = this.props.replaceVariables(this.props.options.contentUrl);
       return this.getRemoteDiagramDefinition(url);
     } else {
@@ -153,7 +157,7 @@ export class DiagramPanelController extends React.Component<DiagramPanelControll
           try {
             this.diagramRef.innerHTML = mermaidAPI.render(diagramId, interpolated, this.renderCallback);
           } catch (err) {
-            console.log("Trying to apply default theme : ", err);
+            console.log('Trying to apply default theme : ', err);
             this.diagramRef.innerHTML = mermaidAPI.render(diagramId, diagramDefinition, this.renderCallback);
           }
           updateDiagramStyle(this.diagramRef, this.props.data, this.props.options, diagramId);

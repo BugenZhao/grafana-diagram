@@ -64,6 +64,7 @@ export interface DiagramOptions {
   valueName: ValueType;
   content: string;
   contentUrl?: string;
+  useDefinitionFromData: boolean;
   mode: DiagramPanelMode;
   mermaidServiceUrl: string;
   useBasicAuth: boolean;

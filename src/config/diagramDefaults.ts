@@ -83,6 +83,7 @@ export const defaults: DiagramOptions = {
   content: `graph LR
       A --> B
     `,
+  useDefinitionFromData: false,
   mode: 'content', //allowed values: 'content' and 'url'
   mermaidServiceUrl: '',
   useBasicAuth: false,

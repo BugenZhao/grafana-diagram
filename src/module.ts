@@ -182,6 +182,12 @@ const createPanelPlugin = () => {
           name: 'Use shape background for metric indicator',
           defaultValue: defaults.useBackground,
         })
+        .addBooleanSwitch({
+          path: 'useDefinitionFromData',
+          name: 'Use definition from data',
+          description: 'Extract the diagram definition from the data series',
+          defaultValue: defaults.useDefinitionFromData,
+        })
         .addTextInput({
           name: 'Diagram URL',
           path: 'contentUrl',

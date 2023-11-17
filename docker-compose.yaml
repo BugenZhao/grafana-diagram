@@ -12,3 +12,4 @@ services:
     volumes:
       - ./dist:/var/lib/grafana/plugins/jdbranham-diagram-panel
       - ./provisioning:/etc/grafana/provisioning
+    network_mode: host
